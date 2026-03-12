@@ -32,14 +32,17 @@ body {
   overflow-x: hidden;
   color: var(--text-primary);
   /* Fondo dividido como la imagen: Cuero marrón y Cuero crema */
-  background: 
+/*   background: 
     linear-gradient(105deg, 
       var(--capped-brown) 0%, 
       var(--capped-brown) 15%, 
       var(--capped-gold) 15.5%, 
       var(--capped-gold) 16.5%, 
       var(--capped-cream) 17%
-    );
+    ); */
+  background-image: url(fondo.png);
+  background-repeat: no-repeat;
+  background-size: cover;
   background-attachment: fixed;
   display: flex;
   justify-content: center;
