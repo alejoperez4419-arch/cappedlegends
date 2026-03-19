@@ -1,16 +1,18 @@
-/* =========================
-   ADVANCED ROBOTIC CORE
-========================= */
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;900&family=Rajdhani:wght@300;500;700&display=swap');
+/* =================================================
+   SOFT-UI NEUMORPHIC INTERFACE (EDICIÓN BLANCO PURO)
+   ================================================= */
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&family=Outfit:wght@300;500;800&display=swap');
 
 :root {
-  --main-white: #ffffff;
-  --bg-light: #f4f7f9;
-  --accent-cyan: #00d2ff;
-  --accent-blue: #007aff;
-  --dark-text: #1a1c20;
-  --glass-border: rgba(255, 255, 255, 0.8);
-  --panel-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+  --bg-color: #ebf0f7;
+  /* Azul grisáceo muy pálido */
+  --soft-white: #ffffff;
+  --shadow-dark: rgba(163, 177, 198, 0.5);
+  --shadow-light: rgba(255, 255, 255, 0.8);
+  --accent-mint: #00d1b2;
+  /* Verde menta suave como acento */
+  --text-dark: #4a4a4a;
+  --text-light: #9b9b9b;
 }
 
 * {
@@ -20,172 +22,148 @@
 }
 
 body {
-  font-family: 'Rajdhani', sans-serif;
-  background-color: var(--bg-light);
-  /* Fondo con micro-rejilla técnica y gradiente de profundidad */
-  background-image: 
-    radial-gradient(circle at 50% 50%, rgba(0, 210, 255, 0.05) 0%, transparent 80%),
-    linear-gradient(rgba(0, 0, 0, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 0, 0, 0.02) 1px, transparent 1px);
-  background-size: 100% 100%, 20px 20px, 20px 20px;
-  color: var(--dark-text);
+  font-family: 'Quicksand', sans-serif;
+  background-color: var(--bg-color);
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow-x: hidden;
+  color: var(--text-dark);
+  background-image: url(fondo.png);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 /* =========================
-   THE MECHA-STATION (CONTAINER)
+   CONTENEDOR (SOFT CARD)
 ========================= */
 .container {
   width: 100%;
-  max-width: 460px;
-  padding: 20px;
-  position: relative;
+  max-width: 450px;
+  padding: 25px;
 }
 
 .content-box {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(15px);
-  padding: 50px 30px;
+  background: var(--bg-color);
+  padding: 50px 35px;
+  border-radius: 40px;
+  /* El truco del neumorfismo: una sombra oscura y una clara opuestas */
+  box-shadow: 9px 9px 16px var(--shadow-dark),
+    -9px -9px 16px var(--shadow-light);
   text-align: center;
   position: relative;
-  
-  /* Corte octagonal futurista */
-  clip-path: polygon(8% 0, 92% 0, 100% 8%, 100% 92%, 92% 100%, 8% 100%, 0 92%, 0 8%);
-  border: 1px solid var(--glass-border);
-  box-shadow: var(--panel-shadow), inset 0 0 30px rgba(0, 210, 255, 0.03);
+  box-shadow: 8px 9px 73px 9px;
 }
 
-/* Marco exterior decorativo (Líneas de circuitos) */
-.container::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  border: 1px solid rgba(0, 210, 255, 0.2);
-  clip-path: polygon(8% 0, 92% 0, 100% 8%, 100% 92%, 92% 100%, 8% 100%, 0 92%, 0 8%);
-  transform: scale(1.03);
-  z-index: -1;
-}
-
-/* Detalles de esquinas (Brackets) */
 .corner-decor {
-  position: absolute;
-  width: 40px;
-  height: 40px;
-  border: 2px solid var(--accent-cyan);
-  pointer-events: none;
+  display: none;
 }
-.top-l { top: 0; left: 0; border-right: none; border-bottom: none; }
-.bottom-r { bottom: 0; right: 0; border-left: none; border-top: none; }
 
 /* =========================
-   INTERFACE TEXT & HEADERS
+   TEXTOS
 ========================= */
 .section {
   display: none;
   flex-direction: column;
-  animation: slideInHUD 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  animation: scaleFade 0.5s ease-out;
 }
 
-.section.active { display: flex; }
+.section.active {
+  display: flex;
+}
 
-@keyframes slideInHUD {
-  from { opacity: 0; transform: translateY(30px) rotateX(-15deg); }
-  to { opacity: 1; transform: translateY(0) rotateX(0deg); }
+@keyframes scaleFade {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 h2 {
-  font-family: 'Orbitron', sans-serif;
-  font-size: 26px;
-  font-weight: 900;
-  letter-spacing: 2px;
-  color: #000;
-  text-transform: uppercase;
-  margin-bottom: 5px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 30px;
+  font-weight: 800;
+  color: var(--text-dark);
+  margin-bottom: 8px;
 }
 
 p {
-  font-family: 'Rajdhani', sans-serif;
-  font-weight: 700;
-  font-size: 12px;
-  color: var(--accent-blue);
-  letter-spacing: 3px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-light);
   text-transform: uppercase;
-  opacity: 0.8;
+  letter-spacing: 1.5px;
+  margin-bottom: 10px;
 }
 
 /* =========================
-   INPUT MODULE (DATA STREAM)
+   INPUTS (EFECTO HUNDIDO)
 ========================= */
 .input-group {
-  position: relative;
-  margin-top: 35px;
+  margin-top: 30px;
 }
 
 input {
   width: 100%;
-  padding: 18px 25px;
-  background: #fdfdfd;
-  border: 2px solid #eef1f4;
-  font-family: 'Orbitron', sans-serif;
+  padding: 20px;
+  background: var(--bg-color);
+  border: none;
+  border-radius: 20px;
+  font-family: 'Quicksand', sans-serif;
   font-size: 16px;
-  color: #000;
+  font-weight: 600;
+  color: var(--text-dark);
   text-align: center;
-  transition: all 0.4s ease;
-  clip-path: polygon(5% 0, 100% 0, 100% 70%, 95% 100%, 0 100%, 0 30%);
+  /* Sombra interna para parecer que está hundido en la superficie */
+  box-shadow: inset 5px 5px 10px var(--shadow-dark),
+    inset -5px -5px 10px var(--shadow-light);
+  transition: all 0.3s ease;
 }
 
 input:focus {
   outline: none;
-  border-color: var(--accent-cyan);
-  box-shadow: 0 0 20px rgba(0, 210, 255, 0.15);
-  background: #fff;
+  color: var(--accent-mint);
 }
 
 /* =========================
-   ACTION BUTTON (SYSTEM BOOT)
+   BOTONES (EFECTO PULSABLE)
 ========================= */
 button {
-  margin-top: 25px;
+  margin-top: 30px;
   width: 100%;
   padding: 20px;
-  background: #000;
-  color: #fff;
-  font-family: 'Orbitron', sans-serif;
-  font-size: 14px;
+  background: var(--bg-color);
+  color: var(--text-dark);
+  font-family: 'Outfit', sans-serif;
+  font-size: 16px;
   font-weight: 700;
-  letter-spacing: 5px;
-  text-transform: uppercase;
+  border-radius: 20px;
   border: none;
   cursor: pointer;
-  position: relative;
-  transition: 0.3s;
-  clip-path: polygon(0 0, 95% 0, 100% 30%, 100% 100%, 5% 100%, 0 70%);
+  box-shadow: 6px 6px 12px var(--shadow-dark),
+    -6px -6px 12px var(--shadow-light);
+  transition: all 0.2s ease;
 }
 
 button:hover {
-  background: var(--accent-cyan);
-  color: #000;
-  transform: translateY(-3px);
-  box-shadow: 0 10px 30px rgba(0, 210, 255, 0.4);
+  color: var(--accent-mint);
+  transform: translateY(-2px);
 }
 
-button::before {
-  content: "";
-  position: absolute;
-  top: 0; left: -100%;
-  width: 100%; height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-  transition: 0.5s;
+button:active {
+  /* Al presionar, el botón se "hunde" */
+  box-shadow: inset 4px 4px 8px var(--shadow-dark),
+    inset -4px -4px 8px var(--shadow-light);
+  transform: translateY(0);
 }
-
-button:hover::before { left: 100%; }
 
 /* =========================
-   CARDS GRID (COMPONENT SLOTS)
+   GRID DE TARJETAS
 ========================= */
 .cards-grid {
   display: grid;
@@ -195,85 +173,71 @@ button:hover::before { left: 100%; }
 }
 
 .card {
-  background: #fff;
-  border: 1px solid #dbe3eb;
-  padding: 10px;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
+  background: var(--bg-color);
+  border-radius: 15px;
+  box-shadow: 4px 4px 8px var(--shadow-dark),
+    -4px -4px 8px var(--shadow-light);
+  transition: 0.3s;
 }
 
 .card img {
   width: 100%;
-  border-radius: 4px;
-  transition: 0.3s;
+  border-radius: 10px;
 }
 
 .card:hover {
-  transform: translateY(-5px) scale(1.05);
-  border-color: var(--accent-cyan);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+  transform: scale(1.05);
 }
-
-.card:hover img { filter: grayscale(0); }
 
 .card.selected {
-  border: 2px solid var(--accent-cyan);
-  background: rgba(0, 210, 255, 0.02);
-}
-
-.card.selected::after {
-  content: "LINKED";
-  position: absolute;
-  bottom: -18px; left: 50%;
-  transform: translateX(-50%);
-  font-size: 8px;
-  font-family: 'Orbitron';
-  color: var(--accent-cyan);
+  box-shadow: inset 3px 3px 6px var(--shadow-dark),
+    inset -3px -3px 6px var(--shadow-light);
+  border: 2px solid var(--accent-mint);
 }
 
 /* =========================
-   LOADING SCANNER
+   SPINNER
 ========================= */
 .spinner {
-  width: 70px;
-  height: 70px;
-  margin: 40px auto;
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  position: relative;
+  width: 60px;
+  height: 60px;
+  margin: 30px auto;
+  border-radius: 50%;
+  background: var(--bg-color);
+  box-shadow: 6px 6px 12px var(--shadow-dark),
+    -6px -6px 12px var(--shadow-light);
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 
-.spinner::before {
+.spinner::after {
   content: "";
-  width: 100%;
-  height: 2px;
-  background: var(--accent-cyan);
-  position: absolute;
-  box-shadow: 0 0 15px var(--accent-cyan);
-  animation: scanLine 2s ease-in-out infinite;
+  width: 80%;
+  height: 80%;
+  border: 3px solid transparent;
+  border-top-color: var(--accent-mint);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
 }
 
-@keyframes scanLine {
-  0%, 100% { top: 0%; }
-  50% { top: 100%; }
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 #loadingText {
-  font-family: 'Orbitron';
-  font-size: 11px;
-  letter-spacing: 4px;
-  color: #000;
-  margin-top: 15px;
+  color: var(--accent-mint);
+  font-weight: 700;
 }
 
 /* =========================
-   LOGO AREA
+   LOGO
 ========================= */
 .logo {
-    width: 100%;
-    margin: 0 auto 20px;
-    display: block;
+  width: 100%;
+  margin-bottom: 20px;
+  filter: drop-shadow(3px 3px 5px var(--shadow-dark));
 }
